@@ -10,31 +10,32 @@ import Filter from "./components/Filter/Filter";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-    return ( 
-        <div className="App">
-        <h1 className="text-center mb-3">Characters</h1>
-        <div className="container">
+
+  useEffect(() => {
+    (async function () {
+      let data = await fetch(api).then((res) => res.json());
+      updateFetchData(data);
+    })();
+  }, [api]);
+
+let [fetchData, updateFetchData] = useState([]);
+let { info, results } = fetchData;
+
+  return (
+    <div className="App">
+      <h1 className="text-center mb-3">Characters</h1>
+      <div className="container">
         <div className="row">
           Filter component will be placed here
           <div className="col-lg-8 col-12">
-            <div className="row">
-              Card component will be placed here
-            </div>
+            <div className="row"></div>
           </div>
         </div>
-        </div>
       </div>
-    );
+    </div>
+  );
 }
 
-let api = `https://rickandmortyapi.com/api/character/?page=1`
-
-useEffect(() => {
-    (async function () {
-        let data = await fetch(api).then((res) => res.json());
-        console.log(data);
-    })();
-}, [api]);
-
+let api = `https://rickandmortyapi.com/api/character/?page=1`;
 
 export default App;
