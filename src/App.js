@@ -11,6 +11,9 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 
+  let api = `https://rickandmortyapi.com/api/character/?page=1`;
+
+
   useEffect(() => {
     (async function () {
       let data = await fetch(api).then((res) => res.json());
@@ -28,14 +31,12 @@ let { info, results } = fetchData;
         <div className="row">
           Filter component will be placed here
           <div className="col-lg-8 col-12">
-            <div className="row"></div>
+            <div className="row"><Card results = {results} /></div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-let api = `https://rickandmortyapi.com/api/character/?page=1`;
 
 export default App;
